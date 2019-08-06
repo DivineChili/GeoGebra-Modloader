@@ -6,4 +6,5 @@ web/war/web*
 .project
 .settings
 .idea
+.svn
 *.iml
