@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.7'
+    id 'org.beryx.jlink' version '2.10.2'
+}
+
+project.setDescription("Wrapper application for GeoGebra to enable 3rd-party plugins")
+
+version '0.0.1a'
+
+sourceCompatibility = 1.12
+
+repositories {
+    mavenCentral()
+}
+
+mainClassName = 'net.divinechili.ggbml.Main'
+
+File jfxpath = new File("C:/Program Files/Java/javafx-sdk-11.0.2/lib")
+
+List ext = [
+        'netscape.javascript:jsobject:1',
+        'com.apple:mac_extensions:20040714',
+        'com.ogprover:OpenGeoProver:20120725',
+        'com.sun:jna:4.1.0']
+
+javafx {
+    version = "12.0.1"
+    modules = [ 'javafx.controls' ]
+}
+
+dependencies {
+    compile project(':common')
+    compile project(':common-jre')
+    compile project(':editor-desktop')
+    compile project(':jogl2')
+    compile project(':input3D:impl')
+    compile project(':giac-jni')
+    compile project(':desktop')
+    compile fileTree(include: ['*.jar'], dir: jfxpath)
+    compile ext
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
