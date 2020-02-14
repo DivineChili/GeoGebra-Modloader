@@ -1,45 +1,33 @@
-plugins {
-    id 'java'
-    id 'application'
-    id 'org.openjfx.javafxplugin' version '0.0.7'
-    id 'org.beryx.jlink' version '2.10.2'
-}
 
-project.setDescription("Wrapper application for GeoGebra to enable 3rd-party plugins")
+apply plugin: 'application'
+apply plugin: 'java'
 
-version '0.0.1a'
+mainClassName = "net.divinechili.ModLoader"
 
-sourceCompatibility = 1.12
+File jfxpath = new File("/usr/lib/jvm/javafx-sdk-11.0.2/lib")    // Path to javafx-sdk here
+String jfxbase = new File(jfxpath, "javafx.base.jar").absolutePath
+String jfxcontrols = new File(jfxpath, "javafx.controls.jar").absolutePath
+String jfxfxml = new File(jfxpath, "javafx.fxml.jar").absolutePath
+String jfxgraphics = new File(jfxpath, "javafx.graphics.jar").absolutePath
+String jfxmedia = new File(jfxpath, "javafx.media.jar").absolutePath
+String jfxswing = new File(jfxpath, "javafx.swing.jar").absolutePath
+String jfxweb = new File(jfxpath, "javafx.web.jar").absolutePath
+String jfxswt = new File(jfxpath, "javafx-swt.jar").absolutePath
 
-repositories {
-    mavenCentral()
-}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
-mainClassName = 'net.divinechili.ggbml.Main'
-
-File jfxpath = new File("C:/Program Files/Java/javafx-sdk-11.0.2/lib")
-
-List ext = [
-        'netscape.javascript:jsobject:1',
-        'com.apple:mac_extensions:20040714',
-        'com.ogprover:OpenGeoProver:20120725',
-        'com.sun:jna:4.1.0']
-
-javafx {
-    version = "12.0.1"
-    modules = [ 'javafx.controls' ]
-}
 
 dependencies {
     compile project(':common')
-    compile project(':common-jre')
-    compile project(':editor-desktop')
-    compile project(':jogl2')
-    compile project(':input3D:impl')
-    compile project(':giac-jni')
     compile project(':desktop')
-    compile fileTree(include: ['*.jar'], dir: jfxpath)
-    compile ext
 
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile files(jfxbase)
+    compile files(jfxcontrols)
+    compile files(jfxfxml)
+    compile files(jfxgraphics)
+    compile files(jfxmedia)
+    compile files(jfxswing)
+    compile files(jfxweb)
+    compile files(jfxswt)
 }

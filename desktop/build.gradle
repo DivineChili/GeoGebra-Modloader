@@ -34,29 +34,10 @@ eclipse.classpath.file {
 
 File javaHome = new File(System.properties['java.home'])
 javaHome = javaHome.name == 'jre' ? javaHome.parentFile : javaHome
-/*String jfxrtLocation = new File("${javaHome}/jre/lib/jfxrt.jar").absolutePath
-// JavaFX locations for JDK7, JDK7, JDK8
-for (location in ['lib/jfxrt.jar', 'jre/lib/jfxrt.jar', 'jre/lib/ext/jfxrt.jar']) {
-    File file = new File(javaHome, location)
-    if (file.exists()) {
-        jfxrtLocation = file.absolutePath
-        break
-    }
-}*/
-
-File jfxpath = new File("C:/Program Files/Java/javafx-sdk-11.0.2/lib")
-String jfxbase = new File(jfxpath, "javafx.base.jar").absolutePath
-String jfxcontrols = new File(jfxpath, "javafx.controls.jar").absolutePath
-String jfxfxml = new File(jfxpath, "javafx.fxml.jar").absolutePath
-String jfxgraphics = new File(jfxpath, "javafx.graphics.jar").absolutePath
-String jfxmedia = new File(jfxpath, "javafx.media.jar").absolutePath
-String jfxswing = new File(jfxpath, "javafx.swing.jar").absolutePath
-String jfxweb = new File(jfxpath, "javafx.web.jar").absolutePath
-String jfxswt = new File(jfxpath, "javafx-swt.jar").absolutePath
 
 
-sourceCompatibility = 1.12
-targetCompatibility = 1.12
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 List ext = [
     'netscape.javascript:jsobject:1', 
@@ -71,14 +52,7 @@ dependencies {
     compile project(':jogl2')
     compile project(':input3D:impl')
     compile project(':giac-jni')
-    compile ext, files(jfxbase)
-    compile ext, files(jfxcontrols)
-    compile ext, files(jfxfxml)
-    compile ext, files(jfxgraphics)
-    compile ext, files(jfxmedia)
-    compile ext, files(jfxswing)
-    compile ext, files(jfxweb)
-    compile ext, files(jfxswt)
+    compile ext
 
 
     runtime "com.jogamp:jogl-all:$joglVersion:natives-linux-amd64",
